@@ -19,6 +19,10 @@ args = "Run Flask App"
 task = "workflow.run"
 args = "Move Files"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Check README"
+
 [[workflows.workflow]]
 name = "Run Flask App"
 author = "agent"
@@ -41,6 +45,20 @@ agentRequireRestartOnSave = false
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python move_files.py"
+
+[[workflows.workflow]]
+name = "Check README"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cat README.md"
 
 [deployment]
 run = ["sh", "-c", "python main.py"]
