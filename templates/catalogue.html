@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Super Pet Catalogue{% endblock %}
+
+{% block content %}
+<div class="catalogue-container">
+    <h1>Super Pet Catalogue</h1>
+    <div id="catalogue-filters">
+        <input type="text" id="catalogue-search" placeholder="Search super pets...">
+        <select id="catalogue-sort">
+            <option value="hero_name">Sort by Hero Name</option>
+            <option value="superpower">Sort by Superpower</option>
+        </select>
+    </div>
+    <div id="catalogue-list" class="pet-grid">
+        {% for pet in pets %}
+        <div class="pet-card">
+            <img src="{{ pet.image_url or url_for('static', filename='images/DC,WB.jpg') }}" alt="{{ pet.hero_name }}" class="pet-image">
+            <h3>{{ pet.hero_name }}</h3>
+            <p>Superpower: {{ pet.superpower }}</p>
+            <a href="{{ url_for('pets') }}#{{ pet.id }}" class="btn">View Details</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/catalogue.js') }}"></script>
+{% endblock %}

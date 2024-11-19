@@ -1,0 +1,196 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+header {
+    background: #ff9900;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.banner {
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.flyer {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border: 5px solid #ff9900;
+    border-radius: 10px;
+}
+
+.catalogue-container {
+    background-image: url('/static/images/E-Pets2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+}
+
+.btn {
+    display: inline-block;
+    background: #ff9900;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Resources styles */
+.resources-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.resource-section {
+    margin-bottom: 30px;
+}
+
+.resource-section h2 {
+    color: #ff9900;
+    border-bottom: 2px solid #ff9900;
+    padding-bottom: 10px;
+}
+
+.resource-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.resource-section ul li {
+    margin-bottom: 10px;
+}
+
+.resource-section ul li a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.resource-section ul li a:hover {
+    color: #ff9900;
+}
+
+/* Resources preview on homepage */
+.resources-preview {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.resources-preview h2 {
+    color: #ff9900;
+    text-align: center;
+}
+
+.resource-categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.resource-category {
+    flex-basis: 45%;
+    margin-bottom: 20px;
+}
+
+.resource-category h3 {
+    color: #0066cc;
+}
+
+.resource-category ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.resource-category ul li {
+    margin-bottom: 5px;
+}
+
+.resource-category ul li a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.resource-category ul li a:hover {
+    color: #ff9900;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    #search, #catalogue-search {
+        width: 100%;
+    }
+
+    #catalogue-filters {
+        flex-direction: column;
+    }
+
+    #catalogue-search, #catalogue-sort {
+        margin-bottom: 10px;
+    }
+
+    #pet-list, .pet-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .banner-image {
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .resource-category {
+        flex-basis: 100%;
+    }
+}

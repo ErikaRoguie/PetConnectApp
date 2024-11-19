@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Super Pet Management{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Super Pet Management</h1>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search super pets...">
+        <button id="search-btn">Search</button>
+    </div>
+    <button id="add-pet-btn">Add Super Pet</button>
+    <div id="pet-list"></div>
+    <div id="pet-form" class="hidden">
+        <h2>Add/Edit Super Pet</h2>
+        <form id="pet-form-element" enctype="multipart/form-data">
+            <input type="hidden" id="pet-id">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="hero_name">Hero Name:</label>
+            <input type="text" id="hero_name" name="hero_name" required>
+            <label for="species">Species:</label>
+            <input type="text" id="species" name="species" required>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender">
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color">
+            <label for="superpower">Superpower:</label>
+            <input type="text" id="superpower" name="superpower" required>
+            <label for="hero_type">Hero Type:</label>
+            <select id="hero_type" name="hero_type" required>
+                <option value="">Select Hero Type</option>
+                <option value="Flying">Flying</option>
+                <option value="Super Strength">Super Strength</option>
+                <option value="Telepathy">Telepathy</option>
+                <option value="Speed">Speed</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="hero_appearance">Hero Appearance:</label>
+            <textarea id="hero_appearance" name="hero_appearance" rows="3" placeholder="Describe the hero's costume or appearance"></textarea>
+            <label for="pet-image">Pet Image:</label>
+            <input type="file" id="pet-image" name="image" accept="image/*">
+            <button type="button" id="upload-image-btn">Upload Image</button>
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

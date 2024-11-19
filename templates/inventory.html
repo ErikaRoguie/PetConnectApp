@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Super Pet Inventory{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Super Pet Inventory</h1>
+    <div id="inventory-list"></div>
+    <div id="inventory-form" class="hidden">
+        <h2>Add/Edit Inventory Item</h2>
+        <form id="inventory-form-element">
+            <input type="hidden" id="item-id">
+            <label for="pet-id">Pet ID:</label>
+            <input type="number" id="pet-id" name="pet_id" required>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+            <label for="is-premade">Is Premade:</label>
+            <input type="checkbox" id="is-premade" name="is_premade">
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+        </form>
+    </div>
+    <button id="add-inventory-btn">Add Inventory Item</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/inventory.js') }}"></script>
+{% endblock %}

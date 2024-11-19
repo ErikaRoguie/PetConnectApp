@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Super Pets{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <img src="{{ url_for('static', filename='images/DC,WB.jpg') }}" alt="Super Pets Banner" class="banner-image">
+</div>
+<div class="container">
+    <h1>Welcome to Super Pets</h1>
+    <img src="{{ url_for('static', filename='images/E-Pets.jpeg') }}" alt="Super Pets Flyer" class="flyer">
+    <p>Discover and manage your superhero pets with our amazing interface!</p>
+    <a href="{{ url_for('pets') }}" class="btn">View Super Pets</a>
+    
+    <section class="resources-preview">
+        <h2>Useful Links</h2>
+        <div class="resource-categories">
+            <div class="resource-category">
+                <h3>Comics</h3>
+                <ul>
+                    <li><a href="https://www.dccomics.com/" target="_blank">DC Comics</a></li>
+                    <li><a href="https://www.marvel.com/" target="_blank">Marvel</a></li>
+                </ul>
+            </div>
+            <div class="resource-category">
+                <h3>Pet Care</h3>
+                <ul>
+                    <li><a href="https://www.akc.org/" target="_blank">AKC</a></li>
+                    <li><a href="https://www.aspca.org/" target="_blank">ASPCA</a></li>
+                </ul>
+            </div>
+        </div>
+        <a href="{{ url_for('resources') }}" class="btn">See More Resources</a>
+    </section>
+</div>
+{% endblock %}
