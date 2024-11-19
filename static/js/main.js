@@ -5,9 +5,147 @@ document.addEventListener('DOMContentLoaded', () => {
     const addPetBtn = document.getElementById('add-pet-btn');
     const petForm = document.getElementById('pet-form');
     const petFormElement = document.getElementById('pet-form-element');
-    const cancelBtn = document.getElementById('cancel-btn');
     const uploadImageBtn = document.getElementById('upload-image-btn');
     const petImageInput = document.getElementById('pet-image');
+    
+    // Form step elements
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const nextStepBtn = document.getElementById('next-step-btn');
+    const prevStepBtn = document.getElementById('prev-step-btn');
+    const stepIndicators = document.querySelectorAll('.step');
+    const speciesSelect = document.getElementById('species');
+    const breedSelect = document.getElementById('breed');
+
+    // Breed options for each species
+    const breedsBySpecies = {
+        'Dog': [
+            'Labrador Retriever',
+            'German Shepherd',
+            'Golden Retriever',
+            'French Bulldog',
+            'Poodle',
+            'Beagle',
+            'Rottweiler',
+            'Siberian Husky',
+            'Boxer',
+            'Other'
+        ],
+        'Cat': [
+            'Siamese',
+            'Persian',
+            'Maine Coon',
+            'British Shorthair',
+            'Ragdoll',
+            'Bengal',
+            'Sphynx',
+            'American Shorthair',
+            'Russian Blue',
+            'Other'
+        ],
+        'Bird': [
+            'Parakeet',
+            'Cockatiel',
+            'Canary',
+            'Parrot',
+            'Cockatoo',
+            'Finch',
+            'Lovebird',
+            'Conure',
+            'African Grey',
+            'Other'
+        ],
+        'Rabbit': [
+            'Holland Lop',
+            'Dutch',
+            'Rex',
+            'Mini Lop',
+            'Netherland Dwarf',
+            'English Angora',
+            'Lionhead',
+            'French Lop',
+            'Flemish Giant',
+            'Other'
+        ],
+        'Hamster': [
+            'Syrian',
+            'Dwarf Campbell',
+            'Dwarf Winter White',
+            'Roborovski',
+            'Chinese',
+            'Other'
+        ]
+    };
+
+    // Update breed options based on selected species
+    function updateBreedOptions(species) {
+        breedSelect.innerHTML = '<option value="">Select Breed</option>';
+        
+        if (species) {
+            const breeds = breedsBySpecies[species] || ['Other'];
+            breeds.forEach(breed => {
+                const option = document.createElement('option');
+                option.value = breed;
+                option.textContent = breed;
+                breedSelect.appendChild(option);
+            });
+            breedSelect.required = true;
+        } else {
+            breedSelect.required = false;
+        }
+    }
+
+    // Event listener for species selection
+    speciesSelect.addEventListener('change', (e) => {
+        updateBreedOptions(e.target.value);
+    });
+
+    function showStep(stepNumber) {
+        // Update step indicators
+        stepIndicators.forEach(indicator => {
+            if (parseInt(indicator.dataset.step) <= stepNumber) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+
+        // Show/hide appropriate step
+        if (stepNumber === 1) {
+            step1.classList.remove('hidden');
+            step2.classList.add('hidden');
+        } else {
+            step1.classList.add('hidden');
+            step2.classList.remove('hidden');
+        }
+    }
+
+    function validateStep1() {
+        const required = ['name', 'species', 'breed'];
+        let valid = true;
+        required.forEach(field => {
+            const input = document.getElementById(field);
+            if (!input.value.trim()) {
+                valid = false;
+                input.classList.add('invalid');
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+        return valid;
+    }
+
+    nextStepBtn.addEventListener('click', () => {
+        if (validateStep1()) {
+            showStep(2);
+        } else {
+            alert('Please fill in all required fields in Step 1');
+        }
+    });
+
+    prevStepBtn.addEventListener('click', () => {
+        showStep(1);
+    });
 
     function fetchPets(search = '') {
         fetch(`/api/pets?search=${search}`)
@@ -45,14 +183,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showPetForm(pet = null) {
         const formTitle = petForm.querySelector('h2');
-        formTitle.textContent = pet ? 'Edit Super Pet' : 'Add Super Pet';
+        formTitle.textContent = pet ? 'Edit Super Pet' : 'Create Your Super Pet';
         petFormElement.reset();
+        showStep(1); // Always start at step 1
 
         if (pet) {
             document.getElementById('pet-id').value = pet.id;
             document.getElementById('name').value = pet.name;
             document.getElementById('hero_name').value = pet.hero_name;
             document.getElementById('species').value = pet.species;
+            updateBreedOptions(pet.species);
             document.getElementById('breed').value = pet.breed || '';
             document.getElementById('age').value = pet.age || '';
             document.getElementById('gender').value = pet.gender || '';
@@ -62,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('hero_appearance').value = pet.hero_appearance || '';
         } else {
             document.getElementById('pet-id').value = '';
+            updateBreedOptions(''); // Reset breed options
         }
 
         petForm.classList.remove('hidden');
@@ -73,10 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addPetBtn.addEventListener('click', () => {
         showPetForm();
-    });
-
-    cancelBtn.addEventListener('click', () => {
-        petForm.classList.add('hidden');
     });
 
     uploadImageBtn.addEventListener('click', () => {
@@ -129,12 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showInventoryManagement(petId) {
-        // Implement inventory management UI for the specific pet
-        // This could be a modal or a separate page
         console.log(`Manage inventory for pet ${petId}`);
-        // You can implement the inventory management UI here
-        // For example, you could show a modal with inventory information
-        // and allow the user to add/edit/delete inventory items for this pet
     }
 
     fetchPets();

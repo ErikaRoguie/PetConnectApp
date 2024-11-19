@@ -12,41 +12,87 @@
     <button id="add-pet-btn">Add Super Pet</button>
     <div id="pet-list"></div>
     <div id="pet-form" class="hidden">
-        <h2>Add/Edit Super Pet</h2>
+        <h2>Create Your Super Pet</h2>
+        <div class="step-indicator">
+            <div class="step active" data-step="1">1. Choose Animal Type</div>
+            <div class="step" data-step="2">2. Design Super Hero Identity</div>
+        </div>
         <form id="pet-form-element" enctype="multipart/form-data">
             <input type="hidden" id="pet-id">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="hero_name">Hero Name:</label>
-            <input type="text" id="hero_name" name="hero_name" required>
-            <label for="species">Species:</label>
-            <input type="text" id="species" name="species" required>
-            <label for="breed">Breed:</label>
-            <input type="text" id="breed" name="breed">
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age">
-            <label for="gender">Gender:</label>
-            <input type="text" id="gender" name="gender">
-            <label for="color">Color:</label>
-            <input type="text" id="color" name="color">
-            <label for="superpower">Superpower:</label>
-            <input type="text" id="superpower" name="superpower" required>
-            <label for="hero_type">Hero Type:</label>
-            <select id="hero_type" name="hero_type" required>
-                <option value="">Select Hero Type</option>
-                <option value="Flying">Flying</option>
-                <option value="Super Strength">Super Strength</option>
-                <option value="Telepathy">Telepathy</option>
-                <option value="Speed">Speed</option>
-                <option value="Other">Other</option>
-            </select>
-            <label for="hero_appearance">Hero Appearance:</label>
-            <textarea id="hero_appearance" name="hero_appearance" rows="3" placeholder="Describe the hero's costume or appearance"></textarea>
-            <label for="pet-image">Pet Image:</label>
-            <input type="file" id="pet-image" name="image" accept="image/*">
-            <button type="button" id="upload-image-btn">Upload Image</button>
-            <button type="submit">Save</button>
-            <button type="button" id="cancel-btn">Cancel</button>
+            
+            <!-- Step 1: Animal Type Selection -->
+            <div class="form-step" id="step1">
+                <h3>Step 1: Choose Your Animal Type</h3>
+                <p class="step-description">First, let's establish your pet's basic identity and characteristics.</p>
+                
+                <label for="name">Pet's Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="species">Species:</label>
+                <select id="species" name="species" required>
+                    <option value="">Select Species</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Hamster">Hamster</option>
+                    <option value="Other">Other</option>
+                </select>
+                
+                <label for="breed">Breed:</label>
+                <select id="breed" name="breed" required>
+                    <option value="">Select Breed</option>
+                </select>
+                
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="0">
+                
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color">
+                
+                <button type="button" id="next-step-btn" class="next-btn">Next: Design Super Hero Identity →</button>
+            </div>
+            
+            <!-- Step 2: Super Hero Design -->
+            <div class="form-step hidden" id="step2">
+                <h3>Step 2: Design Your Pet's Super Hero Identity</h3>
+                <p class="step-description">Now, let's transform your pet into a superhero! Choose their powers and appearance.</p>
+                
+                <label for="hero_name">Super Hero Name:</label>
+                <input type="text" id="hero_name" name="hero_name" required>
+                
+                <label for="superpower">Superpower:</label>
+                <input type="text" id="superpower" name="superpower" required>
+                
+                <label for="hero_type">Hero Type:</label>
+                <select id="hero_type" name="hero_type" required>
+                    <option value="">Select Hero Type</option>
+                    <option value="Flying">Flying</option>
+                    <option value="Super Strength">Super Strength</option>
+                    <option value="Telepathy">Telepathy</option>
+                    <option value="Speed">Speed</option>
+                    <option value="Other">Other</option>
+                </select>
+                
+                <label for="hero_appearance">Hero Appearance:</label>
+                <textarea id="hero_appearance" name="hero_appearance" rows="3" placeholder="Describe your pet's superhero costume and appearance"></textarea>
+                
+                <label for="pet-image">Pet Image:</label>
+                <input type="file" id="pet-image" name="image" accept="image/*">
+                <button type="button" id="upload-image-btn">Upload Image</button>
+                
+                <div class="form-buttons">
+                    <button type="button" id="prev-step-btn" class="prev-btn">← Back to Pet Details</button>
+                    <button type="submit" class="submit-btn">Create Super Pet</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>

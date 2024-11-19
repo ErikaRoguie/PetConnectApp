@@ -194,3 +194,86 @@ header nav ul li a {
         flex-basis: 100%;
     }
 }
+
+/* Adding to existing styles.css */
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    position: relative;
+}
+
+.step-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #ddd;
+    z-index: 1;
+}
+
+.step {
+    position: relative;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid #ddd;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    border-color: #ff9900;
+    background: #ff9900;
+    color: white;
+}
+
+.form-step {
+    transition: all 0.3s ease;
+}
+
+.form-step.hidden {
+    display: none;
+}
+
+.step-description {
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.next-btn, .prev-btn, .submit-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.next-btn, .submit-btn {
+    background: #ff9900;
+    color: white;
+}
+
+.prev-btn {
+    background: #ddd;
+    color: #333;
+}
+
+.next-btn:hover, .submit-btn:hover {
+    background: #e68a00;
+}
+
+.prev-btn:hover {
+    background: #ccc;
+}
